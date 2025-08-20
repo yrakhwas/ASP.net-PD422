@@ -1,0 +1,13 @@
+﻿@model List<WebApplication3.Models.Product>
+
+<h1>Products List</h1>
+
+@if(Model.Any())
+{
+    <p>Count of products : @Model.Count</p>
+}
+else
+{
+    <p>No products found.</p>
+}
+
