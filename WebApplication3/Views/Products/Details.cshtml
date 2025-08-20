@@ -1,0 +1,17 @@
+﻿@model WebApplication3.Models.Product;
+
+<div class="text-center">
+
+<div class="card">
+    <div class="card-header">
+            Product Detail Information
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">@Model.Name</h5>
+        <p class="card-text">@Model.Category
+            <span class="badge bg-primary">@Model.Price$</span>
+        </p>
+        <a asp-action="Index" class="btn btn-dark">Back</a>
+    </div>
+</div>
+</div>

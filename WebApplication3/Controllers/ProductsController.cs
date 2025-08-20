@@ -17,5 +17,13 @@ namespace WebApplication3.Controllers
         {
             return View(products);
         }
+        public IActionResult Details(int id)
+        {
+            var product = products.FirstOrDefault(p => p.Id == id);
+
+            if(product ==null) return NotFound();
+
+            return View(product);
+        }
     }
 }
