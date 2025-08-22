@@ -1,27 +1,26 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DataAccess;
+using DataAccess.Entities;
+using Microsoft.AspNetCore.Mvc;
 using WebApplication3.Helpers;
-using WebApplication3.Models;
+
 
 namespace WebApplication3.Controllers
 {
     public class ProductsController : Controller
     {
-
-        List<Product> products;
-        public ProductsController()
-        {
-            products = Seeder.GetProducts();
-        }
+        ShopPD422Db context = new ShopPD422Db();
 
         public IActionResult Index()
         {
-            return View(products);
+            return View(context.Products.ToList());
         }
         public IActionResult Details(int id)
         {
-            var product = products.FirstOrDefault(p => p.Id == id);
+            if(id<0) return BadRequest();//400
 
-            if(product ==null) return NotFound();
+            var product = context.Products.Find(id);
+
+            if(product ==null) return NotFound();//404
 
             return View(product);
         }
