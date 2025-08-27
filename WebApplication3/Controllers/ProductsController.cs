@@ -28,9 +28,34 @@ namespace WebApplication3.Controllers
 
             return View(product);
         }
+        
+        public IActionResult Edit(int id)
+        {
+            var product = context.Products.Find(id);
+
+            if (product == null) return NotFound();//404
+
+            LoadCategories();
+            return View(product);
+        }
+        [HttpPost]
+        public IActionResult Edit(Product product)
+        {
+            context.Products.Update(product);
+            context.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+        public IActionResult Delete(int id)
+        {
+            var item = context.Products.Find(id);
+            if (item == null) return NotFound();
+            context.Products.Remove(item);
+            context.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
         public IActionResult Create()
         {
-            ViewBag.CategoryList = new SelectList(context.Categories.ToList(), nameof(Category.Id), nameof(Category.Name));
+            LoadCategories();
             return View();
         }
         [HttpPost]
@@ -40,6 +65,10 @@ namespace WebApplication3.Controllers
 
             context.SaveChanges();
             return RedirectToAction(nameof(Index));
+        }
+        public void LoadCategories()
+        {
+            ViewBag.CategoryList = new SelectList(context.Categories.ToList(), nameof(Category.Id), nameof(Category.Name));
         }
     }
 }
