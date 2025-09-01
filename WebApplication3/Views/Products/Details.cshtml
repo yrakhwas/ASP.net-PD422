@@ -7,6 +7,9 @@
             Product Detail Information
     </div>
     <div class="card-body">
+            <div class="product-image">
+                <img src="@(Model.ImageUrl ?? "https://static.vecteezy.com/system/resources/thumbnails/004/141/669/small_2x/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg")" alt="Product Image" class="card-img-top" />
+            </div>
         <h5 class="card-title">@Model.Name</h5>
         <p class="card-text">@Model.Category
             <span class="badge bg-primary">@Model.Price$</span>

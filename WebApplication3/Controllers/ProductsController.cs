@@ -61,6 +61,9 @@ namespace WebApplication3.Controllers
         [HttpPost]
         public IActionResult Create(Product product)
         {
+
+            if(!ModelState.IsValid) return RedirectToAction(nameof(Create));
+
             context.Products.Add(product);
 
             context.SaveChanges();

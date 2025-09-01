@@ -16,6 +16,10 @@
         <select asp-for="CategoryId" asp-items="@ViewBag.CategoryList" class="form-select">
         </select>
     </div>
+    <div class="col-md-6">
+        <label asp-for="ImageUrl" class="form-label">Image Url</label>
+        <input asp-for="ImageUrl" type="url" class="form-control" placeholder="Enter image URL">
+    </div>
     <div class="d-flex gap-2">
 
     <div class="col-6">
