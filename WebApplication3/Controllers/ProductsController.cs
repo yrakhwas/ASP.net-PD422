@@ -41,6 +41,11 @@ namespace WebApplication3.Controllers
         [HttpPost]
         public IActionResult Edit(Product product)
         {
+            if(!ModelState.IsValid)
+            {
+                LoadCategories();
+                return View(product);
+            }
             context.Products.Update(product);
             context.SaveChanges();
             return RedirectToAction(nameof(Index));
@@ -62,7 +67,11 @@ namespace WebApplication3.Controllers
         public IActionResult Create(Product product)
         {
 
-            if(!ModelState.IsValid) return RedirectToAction(nameof(Create));
+            if(!ModelState.IsValid)
+            {
+                LoadCategories();
+                return View(product);
+            }
 
             context.Products.Add(product);
 
